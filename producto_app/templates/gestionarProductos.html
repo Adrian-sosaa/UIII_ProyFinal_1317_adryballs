@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block cuerpo %}
+<div class="row">
+    <div class="col-md-4">
+        <h1>PRODUCTOS</h1>
+        <div class="card">
+            <div class="card-body">
+                <form action="/registrarProducto/" method="POST"> {% csrf_token %}
+                    <div class="form-group">
+                        <input type="number" name="numCodigo" class="form-control" placeholder="Código del producto" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" name="txtNombre" class="form-control" placeholder="Nombre" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" step="0.01" name="numPrecio" class="form-control" placeholder="Precio" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" name="txtDireccion" class="form-control" placeholder="Dirección" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" name="txtDestinatario" class="form-control" placeholder="Destinatario" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" name="numCantidad" class="form-control" placeholder="Cantidad" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" name="txtCalidad" class="form-control" placeholder="Calidad" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" name="txtsucursal" class="form-control" placeholder="id_sucursal" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" name="numstock" class="form-control" placeholder="stock" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" name="txtprov" class="form-control" placeholder="id_prov" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <h1>Listado de Productos</h1>
+        <img class="w-50" src="{% static  'img/producto.jpg' %}" alt="inicio" width="400" height="auto">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Dirección</th>
+                        <th>Destinatario</th>
+                        <th>Calidad</th>
+                        <th>id_prov</th>
+                        <th>id_sucursal</th>
+                        <th>stock</th>
+
+                        <th colspan="2">Editar/Borrar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for producto in misProductos %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ producto.codigo }}</td>
+                            <td>{{ producto.nombre }}</td>
+                            <td>{{ producto.precio }}</td>
+                            <td>{{ producto.direccion }}</td>
+                            <td>{{ producto.destinatario }}</td>
+                            <td>{{ producto.cant_producto }}</td>
+                            <td>{{ producto.calidad }}</td>
+                            <td>{{ producto.id_sucursal }}</td>
+                            <td>{{ producto.stock }}</td>
+                            <td>{{ producto.id_prov }}</td>
+                            
+                            <td><a href="seleccionarProducto/{{ producto.codigo }}" class="btn btn-info">Editar</a></td>
+                            <td><a href="borrarProducto/{{ producto.codigo }}" class="btn btn-danger">Borrar</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
