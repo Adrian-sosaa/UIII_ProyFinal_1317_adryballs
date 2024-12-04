@@ -7,4 +7,6 @@ class Venta(models.Model):
     contenido = models.CharField(max_length=200, null=False)
     cantidad = models.IntegerField(null=False)
     total = models.DecimalField(max_digits=10, decimal_places=2, null=False)
+    total = models.DecimalField(max_digits=10, decimal_places=2, null=False)
+    reg_final= models.DecimalField(max_digits=10, decimal_places=2, null=False)
     nom_cliente = models.CharField(max_length=50, null=False)

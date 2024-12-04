@@ -28,6 +28,9 @@
                     <div class="form-group py-2">
                         <input type="text" name="txtNomCliente" class="form-control" placeholder="Nombre del cliente" required>
                     </div>
+                    <div class="form-group py-2">
+                        <input type="number" name="numreg_final" class="form-control" placeholder="Registro final" required>
+                    </div>
                     <button type="submit" class="btn btn-primary">Guardar</button>
                 </form>
             </div>
@@ -48,6 +51,7 @@
                         <th>Cantidad</th>
                         <th>Total</th>
                         <th>Cliente</th>
+                        <th>Registro Final</th>
                         <th colspan="2">Acciones</th>
                     </tr>
                 </thead>
@@ -62,6 +66,7 @@
                             <td>{{ venta.cantidad }}</td>
                             <td>{{ venta.total }}</td>
                             <td>{{ venta.nom_cliente }}</td>
+                            <td>{{ venta.reg_final }}</td>
                             <td><a href="{% url 'seleccionarVenta' venta.id_venta %}" class="btn btn-info">Editar</a></td>
                             <td><a href="{% url 'borrarVenta' venta.id_venta %}" class="btn btn-danger">Borrar</a></td>
                         </tr>

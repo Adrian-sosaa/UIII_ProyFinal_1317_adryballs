@@ -13,6 +13,7 @@ def registrarVenta(request):
     cantidad = request.POST["numCantidad"]
     total = request.POST["numTotal"]
     nom_cliente = request.POST["txtNomCliente"]
+    reg_final= request.POST["numTotal"]
 
     Venta.objects.create(
         id_venta=id_venta,
@@ -22,6 +23,7 @@ def registrarVenta(request):
         cantidad=cantidad,
         total=total,
         nom_cliente=nom_cliente,
+        reg_final=reg_final
     )
 
     return redirect("ventas")
@@ -38,6 +40,7 @@ def editarVenta(request):
     cantidad = request.POST["numCantidad"]
     total = request.POST["numTotal"]
     nom_cliente = request.POST["txtNomCliente"]
+    reg_final= request.POST["numTotal"]
 
     venta = Venta.objects.get(id_venta=id_venta)
     venta.nombre = nombre
@@ -46,6 +49,7 @@ def editarVenta(request):
     venta.cantidad = cantidad
     venta.total = total
     venta.nom_cliente = nom_cliente
+    venta.reg_final=reg_final
     venta.save()
 
     return redirect("ventas")
